@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Service Chatbot</title>
+  <style>
+    /* CSS styles for the chatbot interface */
+    .chatbot-container {
+      width: auto;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .chatbot-header {
+      background-color: #f2f2f2;
+      padding: 10px;
+      font-weight: bold;
+    }
+    
+    .chatbot-body {
+      height: auto;
+      padding: auto;
+      overflow-y: scroll;
+    }
+    
+    .chatbot-message {
+      margin-bottom: 10px;
+    }
+    
+    .user-message {
+      background-color: #e2f0cb;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    
+    .bot-message {
+      background-color: #f2f2f2;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    
+    .chatbot-footer {
+      padding: 10px;
+      background-color: #f2f2f2;
+    }
+    
+    .input-container {
+      display: flex;
+    }
+    
+    .input-field {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .send-button {
+      padding: 5px 10px;
+      margin-left: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbot-container">
+    <div class="chatbot-header">Customer Service Chatbot</div>
+    <div class="chatbot-body">
+      <div class="chatbot-message bot-message">Welcome! How can I assist you today?</div>
+    </div>
+    <div class="chatbot-footer">
+      <div class="input-container">
+        <input type="text" class="input-field" placeholder="Type your message...">
+        <button class="send-button">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript code for chatbot functionality
+    const chatbotContainer = document.querySelector('.chatbot-container');
+    const inputField = document.querySelector('.input-field');
+    const sendButton = document.querySelector('.send-button');
+    const chatbotBody = document.querySelector('.chatbot-body');
+
+    sendButton.addEventListener('click', sendMessage);
+
+    function sendMessage() {
+      const userMessage = inputField.value;
+      const userMessageElement = document.createElement('div');
+      userMessageElement.classList.add('chatbot-message', 'user-message');
+      userMessageElement.textContent = userMessage;
+      chatbotBody.appendChild(userMessageElement);
+      inputField.value = '';
+
+      // Simulate bot response
+      setTimeout(() => {
+        const botMessage = 'I apologize, but I am currently unable to assist you. Please try again later.';
+        const botMessageElement = document.createElement('div');
+        botMessageElement.classList.add('chatbot-message', 'bot-message');
+        botMessageElement.textContent = botMessage;
+        chatbotBody.appendChild(botMessageElement);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
